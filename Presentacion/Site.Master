@@ -1,0 +1,288 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Presentacion.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - SpaBellezaTotal</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <style>
+        /* Barra lateral */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #EC4899;
+            color: white;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease;
+        }
+
+        /* Barra lateral contraída parcialmente visible */
+        .sidebar.hidden {
+            width: 40px; /* Ajustamos el ancho de la barra lateral cuando está oculta */
+            padding: 20px 0; /* Aseguramos que el icono de la hamburguesa sea visible */
+        }
+
+        .sidebar .nav-link span {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Hamburger icon */
+        .hamburger-icon {
+            position: absolute;
+            top: 20px;
+            right: 10px; /* El icono está fuera de la barra lateral para estar parcialmente visible */
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+            z-index: 1001;
+        }
+
+        /* Cabecera */
+        .header-container {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .header-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto;
+        }
+
+        /* Navegación */
+        .navbar-nav {
+            margin-top: 20px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-link i {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: white;
+            color: #EC4899;
+        }
+
+        .nav-link:hover i {
+            transform: rotate(360deg);
+            color: #EC4899;
+        }
+
+        .nav-link:hover span {
+            color: #EC4899;
+        }
+
+        /* Contenedor principal */
+        .content-container {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #EC4899;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        /* Sidebar collapsed (hidden) styles for small screens */
+        .sidebar.hidden .header-title,
+        .sidebar.hidden .header-image {
+            display: none;
+        }
+
+        /* Responsive design for small screens */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+
+            .content-container {
+                margin-left: 0;
+                padding: 10px;
+            }
+
+            .header-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .hamburger-icon {
+                display: block;
+            }
+
+            .sidebar.hidden {
+                display: none;
+            }
+
+            .navbar-nav {
+                margin-top: 10px;
+            }
+
+            .nav-link {
+                padding: 8px;
+            }
+
+            footer {
+                font-size: 12px;
+            }
+        }
+
+        /* Responsive styles for extra small screens */
+        @media screen and (max-width: 480px) {
+            .header-title {
+                font-size: 20px;
+            }
+
+            .header-image {
+                width: 50px;
+                height: 50px;
+            }
+
+            .hamburger-icon {
+                font-size: 20px;
+            }
+
+            .nav-link {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <div class="sidebar" id="sidebar">
+            <!-- Icono de menú hamburguesa -->
+            <i class="fas fa-bars hamburger-icon" onclick="toggleSidebar()"></i><br />
+
+            <!-- Cabecera -->
+            <div class="header-container">
+                <div class="header-title">SpaBellezaTotal</div><br />
+                <img class="header-image" src="https://scontent.fcix2-1.fna.fbcdn.net/v/t39.30808-1/374651653_633790118863007_6617318750706831752_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeH6UDakKY1Bje_dNCFizaFX7WxKl8GmogLtbEqXwaaiAvpENnKtsF7GUZ5daLuGnRVewpTtR799D1wWK22sFZzC&_nc_ohc=5s_JXbUHubcQ7kNvgG6RYSe&_nc_zt=24&_nc_ht=scontent.fcix2-1.fna&_nc_gid=AbdaVeXKRQ5fcDQnlXtWwl-&oh=00_AYAlbDJ7NT2EeFkqRUJ9rGxLASYkONRDdmkTyiPf7TzH7g&oe=6751931F" alt="Logo SpaBellezaTotal" />
+            </div>
+
+           <!-- Menú de navegación -->
+            <ul class="navbar-nav flex-column h-100">
+                <li class="nav-item mb-3">
+                <a class="nav-link text-white hover:text-pink-200 d-flex align-items-center" runat="server" href="~/Principal">
+                    <i class="fas fa-home mr-3"></i><span>INICIO</span>
+                </a>
+            </li>
+                <li class="nav-item mb-3">
+                    <a class="nav-link text-white hover:text-pink-200 d-flex align-items-center" runat="server" href="~/Clientes">
+                        <i class="fas fa-users mr-3"></i><span>CLIENTE</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a class="nav-link text-white hover:text-pink-200 d-flex align-items-center" runat="server" href="~/Roles">
+                        <i class="fas fa-shield-alt mr-3"></i><span>ROLES</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a class="nav-link text-white hover:text-pink-200 d-flex align-items-center" runat="server" href="~/Reportes">
+                        <i class="fas fa-calendar-check mr-3"></i><span>REPORTES</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a class="nav-link text-white hover:text-pink-200 d-flex align-items-center" runat="server" href="~/Products">
+                        <i class="fas fa-box mr-3"></i><span>PRODUCTOS</span>
+                    </a>
+                </li>
+                <li class="nav-item mb-3">
+                    <a class="nav-link text-white hover:text-pink-200 d-flex align-items-center" runat="server" href="~/Carrito">
+                        <i class="fas fa-cart-plus mr-3"></i><span>CARRITO</span>
+                    </a>
+                </li>
+                <li class="nav-item flex-grow-1"></li>
+                <li class="nav-item">
+                    <asp:LinkButton ID="BtnCerrarSesion" CssClass="nav-link text-white hover:text-pink-200 d-flex align-items-center" runat="server" OnClick="BtnCerrarSesion_Click">
+                        <i class="fas fa-sign-out-alt mr-3"></i><span>Cerrar sesión</span>
+                    </asp:LinkButton>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Contenedor principal -->
+        <div id="content-container" class="content-container">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 SpaBellezaTotal - Todos los derechos reservados</p>
+        </footer>
+    </form>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const contentContainer = document.getElementById('content-container');
+
+            sidebar.classList.toggle('hidden');
+            contentContainer.classList.toggle('shifted');
+        }
+    </script>
+
+</body>
+</html>

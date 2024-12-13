@@ -1,0 +1,92 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Carrito.master.cs" Inherits="Presentacion.Carrito1" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpaBellezaTotal Online Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        .navbar {
+            background-color: #FF69B4;
+        }
+
+        .navbar .navbar-nav .nav-link {
+            color: white !important;
+            border-radius: 12px;
+            padding: 10px 15px;
+            background-color: transparent;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .navbar .navbar-nav .nav-link:hover {
+            color: #FF1493 !important;
+            background-color: rgba(255, 255, 255, 0.8);
+            outline: none;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+        }
+
+        .navbar .navbar-nav .nav-link:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .navbar .navbar-nav .nav-link i {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar .navbar-nav .nav-link:hover i {
+            transform: rotate(360deg);
+            color: #FF1493;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-light shadow">
+            <div class="container">                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white hover:text-pink-200" runat="server" href="~/Carrito">
+                                <i class="fas fa-home"></i> SpaBellezaTotal Online Store
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white hover:text-pink-200" runat="server" href="~/About">
+                                <i class="fas fa-info-circle"></i> Acerca
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white hover:text-pink-200" runat="server" href="~/Contact">
+                                <i class="fas fa-envelope"></i> Contacto
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.aspx">
+                                <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-5">
+            <asp:ContentPlaceHolder ID="MainContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
