@@ -210,6 +210,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Asistencia.aspx" />
     <Content Include="Carrito.aspx" />
     <Content Include="Citas.aspx" />
     <Content Include="Clientes.aspx" />
@@ -234,10 +235,12 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="HistorialVentaTrabajador.aspx" />
     <Content Include="login.aspx" />
     <Content Include="Pagos.aspx" />
     <Content Include="Principal.aspx" />
     <Content Include="Products.aspx" />
+    <Content Include="RegistroAsistencia.aspx" />
     <Content Include="Reportes.aspx" />
     <Content Include="Roles.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -313,6 +316,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Asistencia.aspx.cs">
+      <DependentUpon>Asistencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asistencia.aspx.designer.cs">
+      <DependentUpon>Asistencia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Carrito.aspx.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -361,6 +371,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HistorialVentaTrabajador.aspx.cs">
+      <DependentUpon>HistorialVentaTrabajador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HistorialVentaTrabajador.aspx.designer.cs">
+      <DependentUpon>HistorialVentaTrabajador.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -390,6 +407,13 @@
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistroAsistencia.aspx.cs">
+      <DependentUpon>RegistroAsistencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroAsistencia.aspx.designer.cs">
+      <DependentUpon>RegistroAsistencia.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reportes.aspx.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
